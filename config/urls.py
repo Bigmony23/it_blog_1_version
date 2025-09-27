@@ -22,6 +22,7 @@ from django.views.generic import TemplateView
 from config import settings
 
 urlpatterns = [
+    path('ckeditor/', include('ckeditor_uploader.urls')) ,
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
@@ -32,6 +33,6 @@ urlpatterns = [
     path('articles/', include('articles.urls')),
 
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
